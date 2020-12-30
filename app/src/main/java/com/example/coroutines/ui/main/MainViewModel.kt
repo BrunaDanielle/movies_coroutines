@@ -12,12 +12,6 @@ class MainViewModel(private val repository: MainRepository) : ViewModel() {
 
     val filmesLiveData = MutableLiveData<List<Filme>>()
 
-    fun getFilmes(){
-        repository.getFilmes { filmes ->
-            filmesLiveData.postValue(filmes)
-        }
-    }
-
     fun getFilmesCoroutines(){
         CoroutineScope(Dispatchers.Main).launch {
             val filmes = withContext(Dispatchers.Default) {
